@@ -31,25 +31,17 @@ public class HashTable {
         ArrayList<Producto> itemsProducto = linkeadoProducto[Math.abs(index)];
         if(itemsProducto == null) {
             itemsProducto = new ArrayList<Producto>();
-            HashTableDto item = new HashTableDto();
-            item.setKey(key);
-            item.setValue(value);
-            itemsProducto.add(item.value);
+            itemsProducto.add(value);
             linkeadoProducto[Math.abs(index)] = itemsProducto;
         }
         else {
-            HashTableDto Newitem = new HashTableDto();
-            Newitem.setKey(key);
-            Newitem.setValue(value);
             for(Producto item : itemsProducto) {
                 if(item.getId().substring(item.getId().length()-3).equals(key)) {
-                    itemsProducto.add(Newitem.value);
+                    itemsProducto.add(value);
                     return;
                 }
             }
-            HashTableDto item = new HashTableDto();
-            item.setValue(value);
-            itemsProducto.add(item.getValue());
+            itemsProducto.add(value);
         }
     }
 }
