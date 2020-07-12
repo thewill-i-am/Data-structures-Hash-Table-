@@ -48,11 +48,11 @@ public class GestorProducto {
 
     public void filtradoProducto(int index){
         for (int i = 0; i < hashTable.get(index).size() ; i++) {
-            System.out.println("Producoto");
-            System.out.println(hashTable.get(index).get(i).value.getIndex());
-            System.out.println(hashTable.get(index).get(i).value.getId());
-            System.out.println(hashTable.get(index).get(i).value.getNombre());
-            System.out.println(hashTable.get(index).get(i).value.getCategoria());
+            System.out.println("Producto");
+            System.out.println(hashTable.get(index).get(i).getIndex());
+            System.out.println(hashTable.get(index).get(i).getId());
+            System.out.println(hashTable.get(index).get(i).getNombre());
+            System.out.println(hashTable.get(index).get(i).getCategoria());
             System.out.println("\n");
         }
     }

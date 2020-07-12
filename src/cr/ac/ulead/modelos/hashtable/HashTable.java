@@ -1,57 +1,55 @@
 package cr.ac.ulead.modelos.hashtable;
 
 import cr.ac.ulead.modelos.Producto;
-
 import java.util.ArrayList;
 
 public class HashTable {
     private final int tamanio = 4096;
-    private ArrayList<HashTableDto>[] linkeado = new ArrayList[tamanio];
+    private ArrayList<Producto>[] linkeadoProducto = new ArrayList[tamanio];
 
-    private ArrayList<HashTableDto> getObj(int Posicion) {
+    private ArrayList<Producto> getObj(int Posicion) {
         if(Posicion >  tamanio)
             return null;
-        ArrayList<HashTableDto> items = linkeado[Math.abs(Posicion)];
+        ArrayList<Producto> items = linkeadoProducto[Math.abs(Posicion)];
         return items;
     }
 
-    public ArrayList<HashTableDto> get(int Posicion) {
-        ArrayList<HashTableDto> item = getObj(Posicion);
+    public ArrayList<Producto> get(int Posicion) {
+        ArrayList<Producto> item = getObj(Posicion);
         if(item == null)
             return null;
         else
             return item;
     }
 
-    public ArrayList<HashTableDto>[] getAll() {
-        return linkeado;
+    public ArrayList<Producto>[] getAll() {
+        return linkeadoProducto;
     }
 
     public void put(String key, Producto value) {
         int index=Integer.parseInt(key,16);
-        ArrayList<HashTableDto> items = linkeado[Math.abs(index)];
-        if(items == null) {
-            items = new ArrayList<HashTableDto>();
+        ArrayList<Producto> itemsProducto = linkeadoProducto[Math.abs(index)];
+        if(itemsProducto == null) {
+            itemsProducto = new ArrayList<Producto>();
             HashTableDto item = new HashTableDto();
             item.setKey(key);
-            item.setValue(value) ;
-            items.add(item);
-            linkeado[Math.abs(index)] = items;
+            item.setValue(value);
+            itemsProducto.add(item.value);
+            linkeadoProducto[Math.abs(index)] = itemsProducto;
         }
         else {
             HashTableDto Newitem = new HashTableDto();
             Newitem.setKey(key);
             Newitem.setValue(value);
-            for(HashTableDto item : items) {
-                if(item.getKey().equals(key)) {
-                    items.add(Newitem);
+            for(Producto item : itemsProducto) {
+                if(item.getId().substring(item.getId().length()-3).equals(key)) {
+                    itemsProducto.add(Newitem.value);
                     return;
                 }
             }
             HashTableDto item = new HashTableDto();
-            item.setKey(key);
             item.setValue(value);
-            items.add(item);
+            itemsProducto.add(item.getValue());
         }
     }
 }
